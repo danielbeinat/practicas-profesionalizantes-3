@@ -1,0 +1,87 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background-color: rgb(16, 16, 94);
+  /* centrar calculadora */
+  display: grid;
+  place-items: center;
+}
+
+.calculadora {
+  background-color: white;
+  color: black;
+  /* acomodar calculadora */
+  max-width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  /* poner calculadora al centro */
+  width: 300px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  display: grid;
+  /* separar botones */
+  gap: 0.5rem;
+  display: grid;
+}
+
+.btn {
+  background-color: cornflowerblue;
+  color: white;
+  font-family: monospace;
+  font-size: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: rgb(108, 129, 168);
+  cursor: pointer;
+}
+.pantalla {
+  /* ocupar todo el ancho de la calculadora */
+  grid-column: 1 / -1;
+  background-color: rgb(215, 198, 198);
+  border-color: black;
+  /* tamaño de la pantalla */
+  font-size: 25px;
+  /* poner el 0 de la pantalla a la derecha */
+  text-align: right;
+  border-radius: 1rem;
+  font-family: monospace;
+  padding: 1.5rem;
+}
+
+#cero {
+  /* ocupar dos culumnas */
+  grid-column: span 2;
+}
+
+#igual {
+  /* ocupar dos filas */
+  grid-row: span 2;
+  background-color: orange;
+}
+
+#igual:hover {
+  background-color: rgb(155, 121, 56);
+}
+
+#operaciones {
+  background-color: green;
+}
+#operaciones:hover {
+  background-color: rgb(64, 151, 64);
+}
+
+#borrar {
+  background-color: red;
+}
+#borrar:hover {
+  background-color: rgb(137, 64, 64);
+}
