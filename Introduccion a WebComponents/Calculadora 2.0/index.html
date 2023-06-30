@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clculadora 2.0</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background-color: rgb(16, 16, 94);
+        /* centrar calculadora */
+        display: grid;
+        place-items: center;
+      }
+      button {
+        color: rgb(255, 252, 252);
+        background-color: rgb(235, 0, 0);
+        border-color: black;
+        font-family: monospace;
+        font-size: 20px;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      button:hover {
+        background-color: rgb(182, 32, 32);
+      }
+
+      #calculadora {
+        background-color: rgb(2, 2, 2);
+        color: rgb(255, 8, 8);
+        /* acomodar calculadora */
+        max-width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+        /* poner calculadora al centro */
+        width: 300px;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        display: grid;
+        /* separar botones */
+        gap: 0.5rem;
+        display: grid;
+      }
+
+      #pantalla {
+        /* ocupar todo el ancho de la calculadora */
+        grid-column: 1 / -1;
+        background-color: rgb(231, 211, 211);
+        border-color: black;
+        /* tamaño de la pantalla */
+        font-size: 25px;
+        /* poner el 0 de la pantalla a la derecha */
+        text-align: right;
+        border-radius: 1rem;
+        font-family: monospace;
+        padding: 1.5rem;
+      }
+
+      #punto {
+        grid-column: span 2;
+      }
+
+      #igual {
+        grid-row: span 2;
+      }
+    </style>
+  </head>
+
+  <body></body>
+</html>
+
+<script type="text/javascript">
+  // vista
+
+  class View {
+    constructor() {
+      this.document = document;
+      this.pantalla = this.document.createElement("input");
+      this.pantalla.id = "pantalla";
+      this.pantalla.type = "text";
+      this.pantalla.placeholder = "0";
+      this.pantalla.readOnly = true;
+      this.document.body.appendChild(this.pantalla);
+
+      this.C = this.document.createElement("button");
+      this.C.id = "C";
+      this.C.Text = "C";
+      this.C.textContent = "C";
+      this.document.body.appendChild(this.C);
+
+      this.borrar = document.createElement("button");
+      this.borrar.id = "borrar";
+      this.borrar.textContent = "borrar";
+      this.document.body.appendChild(this.borrar);
+
+      this.multiplicacion = document.createElement("button");
+      this.multiplicacion.id = "multiplicacion";
+      this.multiplicacion.textContent = "*";
+      this.document.body.appendChild(this.multiplicacion);
+
+      this.division = document.createElement("button");
+      this.division.id = "division";
+      this.division.textContent = "/";
+      this.document.body.appendChild(this.division);
+
+      this.btn7 = document.createElement("button");
+      this.btn7.id = "btn7";
+      this.btn7.textContent = "7";
+      this.document.body.appendChild(this.btn7);
+
+      this.btn8 = document.createElement("button");
+      this.btn8.id = "btn8";
+      this.btn8.textContent = "8";
+      this.document.body.appendChild(this.btn8);
+
+      this.btn9 = document.createElement("button");
+      this.btn9.id = "btn9";
+      this.btn9.textContent = "9";
+      this.document.body.appendChild(this.btn9);
+
+      this.resta = document.createElement("button");
+      this.resta.id = "resta";
+      this.resta.textContent = "-";
+      this.document.body.appendChild(this.resta);
+
+      this.btn4 = document.createElement("button");
+      this.btn4.id = "btn4";
+      this.btn4.textContent = "4";
+      this.document.body.appendChild(this.btn4);
+
+      this.btn5 = document.createElement("button");
+      this.btn5.id = "btn5";
+      this.btn5.textContent = "5";
+      this.document.body.appendChild(this.btn5);
+
+      this.btn6 = document.createElement("button");
+      this.btn6.id = "btn6";
+      this.btn6.textContent = "6";
+      this.document.body.appendChild(this.btn6);
+
+      this.sumar = document.createElement("button");
+      this.sumar.id = "sumar";
+      this.sumar.textContent = "+";
+      this.document.body.appendChild(this.sumar);
+
+      this.btn1 = document.createElement("button");
+      this.btn1.id = "btn1";
+      this.btn1.textContent = "1";
+      this.document.body.appendChild(this.btn1);
+
+      this.btn2 = document.createElement("button");
+      this.btn2.id = "btn2";
+      this.btn2.textContent = "2";
+      this.document.body.appendChild(this.btn2);
+
+      this.btn3 = document.createElement("button");
+      this.btn3.id = "btn3";
+      this.btn3.textContent = "3";
+      this.document.body.appendChild(this.btn3);
+
+      this.igual = document.createElement("button");
+      this.igual.id = "igual";
+      this.igual.textContent = "=";
+      this.document.body.appendChild(this.igual);
+
+      this.btn0 = document.createElement("button");
+      this.btn0.id = "btn0";
+      this.btn0.textContent = "0";
+      this.document.body.appendChild(this.btn0);
+
+      this.punto = document.createElement("button");
+      this.punto.id = "punto";
+      this.punto.textContent = ".";
+      this.document.body.appendChild(this.punto);
+
+      // crear un div que envuelva todos los elementos
+      this.container = this.document.createElement("div");
+      this.container.id = "calculadora";
+
+      // agregar cada elemento dentro del contenedor
+      this.container.appendChild(this.pantalla);
+      this.container.appendChild(this.C);
+      this.container.appendChild(this.borrar);
+      this.container.appendChild(this.multiplicacion);
+      this.container.appendChild(this.division);
+      this.container.appendChild(this.btn7);
+      this.container.appendChild(this.btn8);
+      this.container.appendChild(this.btn9);
+      this.container.appendChild(this.resta);
+      this.container.appendChild(this.btn4);
+      this.container.appendChild(this.btn5);
+      this.container.appendChild(this.btn6);
+      this.container.appendChild(this.sumar);
+      this.container.appendChild(this.btn1);
+      this.container.appendChild(this.btn2);
+      this.container.appendChild(this.btn3);
+      this.container.appendChild(this.igual);
+      this.container.appendChild(this.btn0);
+      this.container.appendChild(this.punto);
+
+      this.document.body.appendChild(this.container);
+    }
+  }
+
+  // controlador
+
+  class Controller {
+    constructor(viewReference, modelReference) {
+      this.View = viewReference;
+      this.Model = modelReference;
+
+      this.View.C.addEventListener("click", () => {
+        this.Cbuttonclick();
+      });
+      this.View.borrar.addEventListener("click", () => {
+        this.borrarbuttonclick();
+      });
+      this.View.multiplicacion.addEventListener("click", () => {
+        this.multiplicacionbuttonclick();
+      });
+      this.View.division.addEventListener("click", () => {
+        this.divisionbuttonclick();
+      });
+      this.View.btn7.addEventListener("click", () => {
+        this.onbt7buttonclick();
+      });
+      this.View.btn8.addEventListener("click", () => {
+        this.onbt8buttonclick();
+      });
+      this.View.btn9.addEventListener("click", () => {
+        this.onbt9buttonclick();
+      });
+      this.View.resta.addEventListener("click", () => {
+        this.restabuttonclick();
+      });
+      this.View.btn4.addEventListener("click", () => {
+        this.onbt4buttonclick();
+      });
+      this.View.btn5.addEventListener("click", () => {
+        this.onbt5buttonclick();
+      });
+      this.View.btn6.addEventListener("click", () => {
+        this.onbt6buttonclick();
+      });
+      this.View.sumar.addEventListener("click", () => {
+        this.sumarbuttonclick();
+      });
+      this.View.btn1.addEventListener("click", () => {
+        this.onbt1buttonclick();
+      });
+      this.View.btn2.addEventListener("click", () => {
+        this.onbt2buttonclick();
+      });
+      this.View.btn3.addEventListener("click", () => {
+        this.onbt3buttonclick();
+      });
+      this.View.igual.addEventListener("click", () => {
+        this.igualbuttonclick();
+      });
+      this.View.btn0.addEventListener("click", () => {
+        this.onbt0buttonclick();
+      });
+      this.View.punto.addEventListener("click", () => {
+        this.puntobuttonclick();
+      });
+    }
+
+    onbt1buttonclick(event) {
+      this.View.pantalla.value += "1";
+    }
+
+    onbt2buttonclick(event) {
+      this.View.pantalla.value += "2";
+    }
+
+    onbt3buttonclick(event) {
+      this.View.pantalla.value += "3";
+    }
+
+    onbt4buttonclick(event) {
+      this.View.pantalla.value += "4";
+    }
+
+    onbt5buttonclick(event) {
+      this.View.pantalla.value += "5";
+    }
+
+    onbt6buttonclick(event) {
+      this.View.pantalla.value += "6";
+    }
+
+    onbt7buttonclick(event) {
+      this.View.pantalla.value += "7";
+    }
+
+    onbt8buttonclick(event) {
+      this.View.pantalla.value += "8";
+    }
+
+    onbt9buttonclick(event) {
+      this.View.pantalla.value += "9";
+    }
+
+    onbt0buttonclick(event) {
+      this.View.pantalla.value += "0";
+    }
+
+    puntobuttonclick(event) {
+      this.View.pantalla.value += ".";
+    }
+
+    igualbuttonclick(event) {
+      try {
+        const resultado = eval(document.getElementById("pantalla").value);
+        this.View.pantalla.value = resultado;
+      } catch (error) {
+        alert("Error: " + error.message);
+      }
+    }
+
+    sumarbuttonclick(event) {
+      this.View.pantalla.value += "+";
+    }
+
+    restabuttonclick(event) {
+      this.View.pantalla.value += "-";
+    }
+
+    multiplicacionbuttonclick(event) {
+      this.View.pantalla.value += "*";
+    }
+
+    divisionbuttonclick(event) {
+      this.View.pantalla.value += "/";
+    }
+
+    Cbuttonclick(event) {
+      this.View.pantalla.value = "";
+    }
+
+    borrarbuttonclick(event) {
+      let pantallaValue = document.getElementById("pantalla").value;
+      this.View.pantalla.value = pantallaValue.slice(0, -1);
+    }
+  }
+
+  class Model {
+    constructor() {}
+
+    evaluateExpression(expression) {
+      try {
+        return eval(expression);
+      } catch (error) {
+        throw new Error("Error al evaluar la expresión: " + error.message);
+      }
+    }
+  }
+
+  // main
+
+  class calculator {
+    constructor() {
+      this.view = new View();
+      this.model = new Model();
+      this.controller = new Controller(this.view, this.model);
+    }
+  }
+
+  function startApplication() {
+    let myCalculator = new calculator();
+  }
+
+  window.addEventListener("load", startApplication);
+</script>

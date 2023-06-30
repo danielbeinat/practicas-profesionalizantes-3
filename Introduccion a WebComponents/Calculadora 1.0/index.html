@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora 1.0</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      body {
+        min-height: 100vh;
+        background-color: rgb(16, 16, 94);
+        /* centrar calculadora */
+        display: grid;
+        place-items: center;
+      }
+      .btn {
+        color: rgb(255, 252, 252);
+        background-color: rgb(235, 0, 0);
+        border-color: black;
+        font-family: monospace;
+        font-size: 20px;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 10px;
+      }
+
+      .btn:hover {
+        background-color: rgb(182, 32, 32);
+      }
+
+      #calculadora {
+        background-color: rgb(2, 2, 2);
+        color: rgb(255, 8, 8);
+        /* acomodar calculadora */
+        max-width: 100%;
+        grid-template-columns: repeat(4, 1fr);
+        /* poner calculadora al centro */
+        width: 300px;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        display: grid;
+        /* separar botones */
+        gap: 0.5rem;
+        display: grid;
+      }
+
+      #pantalla {
+        /* ocupar todo el ancho de la calculadora */
+
+        grid-column: 1 / -1;
+        background-color: rgb(231, 211, 211);
+        border-color: black;
+        /* tamaño de la pantalla */
+        font-size: 25px;
+        /* poner el 0 de la pantalla a la derecha */
+        text-align: right;
+        border-radius: 1rem;
+        font-family: monospace;
+        padding: 1.5rem;
+      }
+
+      #punto {
+        grid-column: span 2;
+      }
+
+      #igual {
+        grid-row: span 2;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculadora">
+      <input id="pantalla" disabled type="text" />
+
+      <button id="c" class="btn">C</button>
+      <button id="borrar" class="btn">Borrar</button>
+      <button id="dividir" class="btn">/</button>
+      <button id="multiplicar" class="btn">*</button>
+      <button id="btn7" class="btn">7</button>
+      <button id="btn8" class="btn">8</button>
+      <button id="btn9" class="btn">9</button>
+      <button id="restar" class="btn">-</button>
+      <button id="btn4" class="btn">4</button>
+      <button id="btn5" class="btn">5</button>
+      <button id="btn6" class="btn">6</button>
+      <button id="sumar" class="btn">+</button>
+      <button id="btn1" class="btn">1</button>
+      <button id="btn2" class="btn">2</button>
+      <button id="btn3" class="btn">3</button>
+      <button id="igual" class="btn">=</button>
+      <button id="btn0" class="btn">0</button>
+      <button id="punto" class="btn">.</button>
+    </div>
+
+    <script>
+      document.getElementById("btn1").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "1";
+      });
+
+      document.getElementById("btn2").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "2";
+      });
+
+      document.getElementById("btn3").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "3";
+      });
+
+      document.getElementById("sumar").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "+";
+      });
+
+      document.getElementById("restar").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "-";
+      });
+
+      document.getElementById("multiplicar").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "*";
+      });
+
+      document.getElementById("dividir").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "/";
+      });
+
+      document.getElementById("btn4").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "4";
+      });
+
+      document.getElementById("btn5").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "5";
+      });
+
+      document.getElementById("btn6").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "6";
+      });
+
+      document.getElementById("btn7").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "7";
+      });
+
+      document.getElementById("btn8").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "8";
+      });
+
+      document.getElementById("btn9").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "9";
+      });
+
+      document.getElementById("btn0").addEventListener("click", () => {
+        document.getElementById("pantalla").value += "0";
+      });
+
+      document.getElementById("punto").addEventListener("click", () => {
+        document.getElementById("pantalla").value += ".";
+      });
+
+      document.getElementById("c").addEventListener("click", () => {
+        document.getElementById("pantalla").value = "";
+      });
+
+      document.getElementById("igual").addEventListener("click", () => {
+        try {
+          let resultado = eval(document.getElementById("pantalla").value);
+          if (isNaN(resultado)) {
+            throw new Error("Expresión inválida");
+          } else {
+            document.getElementById("pantalla").value = resultado;
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      });
+
+      document.getElementById("borrar").addEventListener("click", () => {
+        const pantallaValue = document.getElementById("pantalla").value.trim();
+        if (pantallaValue) {
+          const newValue = eval(pantallaValue.slice(0, -1));
+          document.getElementById("pantalla").value = isNaN(newValue)
+            ? ""
+            : newValue;
+        } else {
+          document.getElementById("pantalla").value = "";
+        }
+      });
+    </script>
+  </body>
+</html>
