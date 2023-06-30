@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let fecha = prompt("ingrese una fecha valida");
+      let fechanueva = new Date(fecha);
+      let intentos = 0;
+
+      while (isNaN(fechanueva.getTime())) {
+        intentos++;
+        fecha = prompt(
+          `La fecha ingresada es invalida. Intento ${intentos}. Ingrese una fecha valida:`
+        );
+
+        fechanueva = new Date(fecha);
+      }
+
+      console.log(
+        `La fecha ingresa es valida: ${fecha}. Se necesitaron ${intentos} intentos.`
+      );
+    </script>
+  </body>
+</html>
