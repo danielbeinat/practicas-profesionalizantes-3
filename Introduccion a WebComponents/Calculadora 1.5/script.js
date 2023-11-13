@@ -42,21 +42,6 @@ function puntobuttonclick(event) {
   document.getElementById("pantalla").value += ".";
 }
 
-// function igualbuttonclick(event) {
-//   document.getElementById("pantalla").value = eval(
-//     document.getElementById("pantalla").value
-//   );
-// }
-
-// function igualbuttonclick(event) {
-//   try {
-//     const resultado = eval(document.getElementById("pantalla").value);
-//     document.getElementById("pantalla").value = resultado;
-//   } catch (error) {
-//     document.getElementById("pantalla").value = "Error";
-//   }
-// }
-
 function igualbuttonclick(event) {
   try {
     const resultado = eval(document.getElementById("pantalla").value);
@@ -171,7 +156,6 @@ function starApplication() {
   sumar.addEventListener("click", sumarbuttonclick);
   document.body.appendChild(sumar);
 
-  // Crear el botón
   let btn1 = document.createElement("button");
   btn1.id = "btn1";
   btn1.innerText = "1";
@@ -208,11 +192,9 @@ function starApplication() {
   punto.addEventListener("click", puntobuttonclick);
   document.body.appendChild(punto);
 
-  // crear un div que envuelva todos los elementos
   let container = document.createElement("div");
   container.id = "calculadora";
 
-  // agregar cada elemento dentro del contenedor
   container.appendChild(pantalla);
   container.appendChild(C);
   container.appendChild(borrar);
@@ -233,7 +215,6 @@ function starApplication() {
   container.appendChild(btn0);
   container.appendChild(punto);
 
-  // agregar el contenedor a la página
   document.body.appendChild(container);
 }
 

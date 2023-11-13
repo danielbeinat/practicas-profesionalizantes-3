@@ -17,14 +17,14 @@ const temperaturas = {
 
 function convesion2(temperaturas) {
   for (const mes in temperaturas.meses) {
-    console.log(mes); // muestra el nombre del mes
+    console.log(mes);
     let F =
       (temperaturas.meses[mes].max_abs +
         temperaturas.meses[mes].max_media +
         temperaturas.meses[mes].media +
         temperaturas.meses[mes].min) *
         1.8 +
-      32; // muestra la temperatura máxima absoluta del mes
+      32;
 
     console.log(
       "La conversión de grados Celsius a Fahrenheit es de: " + F + " F° "

@@ -14,7 +14,6 @@
       body {
         min-height: 100vh;
         background-color: rgb(16, 16, 94);
-        /* centrar calculadora */
         display: grid;
         place-items: center;
       }
@@ -37,28 +36,21 @@
       #calculadora {
         background-color: rgb(2, 2, 2);
         color: rgb(255, 8, 8);
-        /* acomodar calculadora */
         max-width: 100%;
         grid-template-columns: repeat(4, 1fr);
-        /* poner calculadora al centro */
         width: 300px;
         padding: 1.5rem;
         border-radius: 1rem;
         display: grid;
-        /* separar botones */
         gap: 0.5rem;
         display: grid;
       }
 
       #pantalla {
-        /* ocupar todo el ancho de la calculadora */
-
         grid-column: 1 / -1;
         background-color: rgb(231, 211, 211);
         border-color: black;
-        /* tamaño de la pantalla */
         font-size: 25px;
-        /* poner el 0 de la pantalla a la derecha */
         text-align: right;
         border-radius: 1rem;
         font-family: monospace;
